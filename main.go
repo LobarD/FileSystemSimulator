@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -99,4 +101,42 @@ func main() {
 	fs.addFile("/home/someUser", &File{name: "notes.txt", size: 512})
 	fs.addFile("/home/someUser", &File{name: "someFile.txt", size: 1024})
 	fs.printContents(nil, "")
+
+	for {
+		fmt.Print("\nEnter command (addFolder, addFile, list, exit): ")
+		reader := bufio.NewReader(os.Stdin)
+		command, _ := reader.ReadString('\n')
+		command = strings.TrimSuffix(command, "\n")
+
+		switch command {
+		case "addFolder":
+			fmt.Print("Enter full folder path: ")
+			folderName, _ := reader.ReadString('\n')
+			folderName = strings.TrimSuffix(folderName, "\n")
+			fs.addFolder(folderName)
+
+		case "addFile":
+			fmt.Print("Enter full folder path: ")
+			folderName, _ := reader.ReadString('\n')
+			folderName = strings.TrimSuffix(folderName, "\n")
+
+			fmt.Print("Enter file name: ")
+			fileName, _ := reader.ReadString('\n')
+			fileName = strings.TrimSuffix(fileName, "\n")
+
+			fmt.Print("Enter file size: ")
+			fileSize, _ := reader.ReadString('\n')
+			fileSizeInt, _ := strconv.Atoi(fileSize)
+			fs.addFile(folderName, &File{name: fileName, size: fileSizeInt})
+
+		case "list":
+			fs.printContents(nil, "")
+
+		case "exit":
+			return
+
+		default:
+			fmt.Println("Invalid command")
+		}
+	}
 }
