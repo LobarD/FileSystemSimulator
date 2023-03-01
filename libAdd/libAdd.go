@@ -27,7 +27,7 @@ type FileSystem struct {
 	root *Folder
 }
 
-func NewFileSystem() *FileSystem {
+func NewFileSystem() *FileSystem { // create root folder ("/")
 	return &FileSystem{root: &Folder{Name: "/"}}
 }
 
@@ -78,9 +78,9 @@ func (fs *FileSystem) PrintContents(folder *Folder, prefix string) {
 	}
 	fmt.Println(prefix + folder.Name + "/")
 	for _, item := range folder.Contents {
-		if folder, ok := item.(*Folder); ok {
+		if folder, ok := item.(*Folder); ok { //if contents is folder
 			fs.PrintContents(folder, prefix+"  ")
-		} else {
+		} else { //if contents is file
 			file := item.(*File)
 			fmt.Println(prefix + "  " + file.Name + " (" + file.Size + " bytes)")
 		}

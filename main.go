@@ -10,12 +10,12 @@ import (
 )
 
 func main() {
-	fs := libAdd.NewFileSystem()
+	fs := libAdd.NewFileSystem() //file system
 	fs.AddFolder("/home")
 	fs.AddFolder("/home/userLobar")
 	fs.AddFile("/home/userLobar", &libAdd.File{Name: "test.txt", Size: "1024"})
-	fs.AddFolder("/home/UserLobar/documents")
-	fs.AddFile("/home/UserLobar/documents", &libAdd.File{Name: "report.docx", Size: "2048"})
+	fs.AddFolder("/home/userLobar/documents")
+	fs.AddFile("/home/userLobar/documents", &libAdd.File{Name: "report.docx", Size: "2048"})
 	fs.AddFolder("/home/someUser")
 	fs.AddFile("/home/someUser", &libAdd.File{Name: "someFile.txt", Size: "1024"})
 	fs.AddFile("/home/someUser", &libAdd.File{Name: "notes2.txt", Size: "256"})
@@ -23,14 +23,14 @@ func main() {
 
 	for {
 		fmt.Print("\nEnter command (addFolder, addFile, list, exit): ")
-		reader := bufio.NewReader(os.Stdin)
-		command, _ := reader.ReadString('\n')
-		command = strings.TrimSuffix(command, "\n")
+		reader := bufio.NewReader(os.Stdin)         //bufer
+		command, _ := reader.ReadString('\n')       // console input
+		command = strings.TrimSuffix(command, "\n") //delete last simbol
 
 		switch command {
 		case "addFolder":
 			fmt.Print("Enter full folder path: ")
-			folderName, _ := reader.ReadString('\n')
+			folderName, _ := reader.ReadString('\n') //intput full folder path
 			folderName = strings.TrimSuffix(folderName, "\n")
 			fs.AddFolder(folderName)
 
@@ -49,7 +49,7 @@ func main() {
 			fs.AddFile(folderName, &libAdd.File{Name: fileName, Size: fileSize})
 
 		case "list":
-			fs.PrintContents(nil, "")
+			fs.PrintContents(nil, "") //printing current state simulated file sysytem
 
 		case "exit":
 			return
