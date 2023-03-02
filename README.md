@@ -1,6 +1,5 @@
 # FileSystemSimulator
-
-➜  FileSystemSimulator git:(main) ✗ go run main.go
+$ go run main.go
 //
   home/
     UserLobar/
