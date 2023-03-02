@@ -18,7 +18,6 @@ func main() {
 	fs.AddFile("/home/userLobar/documents", &libAdd.File{Name: "report.docx", Size: "2048"})
 	fs.AddFolder("/home/someUser")
 	fs.AddFile("/home/someUser", &libAdd.File{Name: "someFile.txt", Size: "1024"})
-	fs.AddFile("/home/someUser", &libAdd.File{Name: "notes2.txt", Size: "256"})
 	fs.PrintContents(nil, "")
 
 	for {
