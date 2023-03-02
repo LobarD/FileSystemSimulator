@@ -1,4 +1,7 @@
 # FileSystemSimulator
+To run program open bash console go to directory ../FileSystemSimularot
+and type: go run main.go
+
 $ go run main.go
 //
   home/
