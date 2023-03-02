@@ -22,18 +22,18 @@ func main() {
 
 	for {
 		fmt.Print("\nEnter command (addFolder, addFile, list, exit): ")
-		reader := bufio.NewReader(os.Stdin)         //bufer
+		reader := bufio.NewReader(os.Stdin)         // bufer for input
 		command, _ := reader.ReadString('\n')       // console input
-		command = strings.TrimSuffix(command, "\n") //delete last simbol
+		command = strings.TrimSuffix(command, "\n") //delete last simbols if is "\n"
 
 		switch command {
-		case "addFolder":
+		case "addFolder": // add folder in simulated file system
 			fmt.Print("Enter full folder path: ")
 			folderName, _ := reader.ReadString('\n') //intput full folder path
 			folderName = strings.TrimSuffix(folderName, "\n")
 			fs.AddFolder(folderName)
 
-		case "addFile":
+		case "addFile": // add file in simulated file system
 			fmt.Print("Enter full folder path: ")
 			folderName, _ := reader.ReadString('\n')
 			folderName = strings.TrimSuffix(folderName, "\n")
@@ -47,14 +47,14 @@ func main() {
 			fileSize = strings.TrimSuffix(fileSize, "\n")
 			fs.AddFile(folderName, &libAdd.File{Name: fileName, Size: fileSize})
 
-		case "list":
+		case "list": // print content simulated file system
 			fs.PrintContents(nil, "") //printing current state simulated file sysytem
 
-		case "exit":
+		case "exit": // exit
 			return
 
 		default:
-			fmt.Println("Invalid command")
+			fmt.Println("Invalid command") // if input is incorrect
 		}
 	}
 }

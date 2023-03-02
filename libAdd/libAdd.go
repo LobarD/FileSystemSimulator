@@ -31,6 +31,7 @@ func NewFileSystem() *FileSystem { // create root folder ("/")
 	return &FileSystem{root: &Folder{Name: "/"}}
 }
 
+// AddFolder in simulated file system
 func (fs *FileSystem) AddFolder(path string) {
 	folders := strings.Split(strings.Trim(path, "/"), "/")
 	currentFolder := fs.root
@@ -51,6 +52,7 @@ func (fs *FileSystem) AddFolder(path string) {
 	}
 }
 
+// AddFile in simulated file system
 func (fs *FileSystem) AddFile(path string, file *File) {
 	folders := strings.Split(strings.Trim(path, "/"), "/")
 	currentFolder := fs.root
@@ -72,6 +74,7 @@ func (fs *FileSystem) AddFile(path string, file *File) {
 	currentFolder.AddFile(file)
 }
 
+// PrintContents of simulated file system
 func (fs *FileSystem) PrintContents(folder *Folder, prefix string) {
 	if folder == nil {
 		folder = fs.root
